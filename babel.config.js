@@ -6,7 +6,17 @@ module.exports = {
       {
         libraryName: "antd",
         style: true
-      }
+      },
+      "ant"
+    ],
+    [
+      "import",
+      {
+        libraryName: "lodash",
+        libraryDirectory: "",
+        camel2DashComponentName: false // default: true
+      },
+      "lodash"
     ]
   ]
 };
