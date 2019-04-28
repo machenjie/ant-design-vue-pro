@@ -1,26 +1,111 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/",
-      name: "home",
-      component: Home
+      path: "/user",
+      component: () =>
+        import(/* webpackChunkName: "layout" */ "./layouts/UserLayout.vue"),
+      children: [
+        {
+          path: "login",
+          component: () =>
+            import(/* webpackChunkName: "user" */ "./views/user/Login.vue")
+        },
+        {
+          path: "register",
+          component: () =>
+            import(/* webpackChunkName: "user" */ "./views/user/Register.vue")
+        }
+      ]
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      path: "/",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+        import(/* webpackChunkName: "layout" */ "./layouts/BasicLayout.vue"),
+      children: [
+        {
+          path: "",
+          redirect: "dashboard"
+        },
+        {
+          path: "dashboard",
+          component: { render: h => h("router-view") },
+          children: [
+            {
+              path: "",
+              redirect: "analysis"
+            },
+            {
+              path: "analysis",
+              component: () =>
+                import(/* webpackChunkName: "dashboard" */ "./views/dashboard/Analysis.vue")
+            }
+          ]
+        },
+        {
+          path: "form",
+          component: { render: h => h("router-view") },
+          children: [
+            {
+              path: "",
+              redirect: "basic-form"
+            },
+            {
+              path: "basic-form",
+              component: () =>
+                import(/* webpackChunkName: "form" */ "./views/form/BasicForm.vue")
+            },
+            {
+              path: "setup-from",
+              component: { render: h => h("router-view") },
+              children: [
+                {
+                  path: "",
+                  redirect: "info"
+                },
+                {
+                  path: "info",
+                  component: () =>
+                    import(/* webpackChunkName: "form" */ "./views/form/setup/Info.vue")
+                },
+                {
+                  path: "confirm",
+                  component: () =>
+                    import(/* webpackChunkName: "form" */ "./views/form/setup/Confirm.vue")
+                },
+                {
+                  path: "result",
+                  component: () =>
+                    import(/* webpackChunkName: "form" */ "./views/form/setup/Result.vue")
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      path: "*",
+      redirect: "/user/login"
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  NProgress.start();
+  next();
+});
+
+router.afterEach(() => {
+  NProgress.done();
+});
+
+export default router;
