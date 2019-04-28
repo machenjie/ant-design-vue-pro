@@ -4,7 +4,8 @@ module.exports = {
     [
       "import",
       {
-        libraryName: "antd",
+        libraryName: "ant-design-vue",
+        libraryDirectory: "es",
         style: true
       },
       "ant"
