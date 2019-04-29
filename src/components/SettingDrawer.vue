@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
@@ -47,7 +47,7 @@ export default class SettingDrawer extends Vue {
     this.visible = false;
   }
 
-  OnThemeChange(type, v) {
+  OnThemeChange(type: string, v: string) {
     this.$router.push({ query: { ...this.$route.query, [type]: v } });
   }
 }

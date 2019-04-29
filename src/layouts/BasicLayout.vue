@@ -9,11 +9,12 @@
       v-model="collapsed"
       :theme="siderTheme"
       v-if="siderLayout"
+      width="256px"
     >
       <div class="logo">
         Ant Design Vue Pro
       </div>
-      <SiderMenu></SiderMenu>
+      <SiderMenu :theme="siderTheme"></SiderMenu>
     </a-layout-sider>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
@@ -21,6 +22,7 @@
           class="trigger"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
           @click="collapsed = !collapsed"
+          v-if="siderLayout"
         />
         <Header class="header"></Header>
       </a-layout-header>
@@ -37,12 +39,12 @@
   </a-layout>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import SiderMenu from "./SiderMenu";
-import Header from "./Header";
-import Footer from "./Footer";
-import SettingDrawer from "../components/SettingDrawer";
+import SiderMenu from "./SiderMenu.vue";
+import Header from "./Header.vue";
+import Footer from "./Footer.vue";
+import SettingDrawer from "../components/SettingDrawer.vue";
 
 @Component({
   components: {

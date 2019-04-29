@@ -2,7 +2,7 @@
   <router-view></router-view>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
