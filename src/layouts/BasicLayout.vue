@@ -14,7 +14,7 @@
       <div class="logo">
         Ant Design Vue Pro
       </div>
-      <SiderMenu :theme="siderTheme"></SiderMenu>
+      <SiderMenu :theme="siderTheme" :collapsed="collapsed"></SiderMenu>
     </a-layout-sider>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
@@ -55,7 +55,7 @@ import SettingDrawer from "../components/SettingDrawer.vue";
   }
 })
 export default class BasicLayout extends Vue {
-  collapsed = false;
+  collapsed: boolean = false;
 
   get siderTheme() {
     return this.$route.query.navTheme || "dark";

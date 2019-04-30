@@ -1,5 +1,5 @@
 <template functional>
-  <a-sub-menu :key="props.menuInfo.path">
+  <a-sub-menu :key="props.menuInfo.fullPath">
     <span slot="title">
       <a-icon
         v-if="props.menuInfo.meta.icon"
@@ -10,15 +10,18 @@
     <template v-for="item in props.menuInfo.children">
       <a-menu-item
         v-if="!item.children"
-        :key="item.path"
+        :key="item.fullPath"
         @click="
-          parent.$router.push({ path: item.path, query: parent.$route.query })
+          parent.$router.push({
+            path: item.fullPath,
+            query: parent.$route.query
+          })
         "
       >
         <a-icon v-if="item.meta.icon" :type="item.meta.icon" />
         <span>{{ item.meta.title }}</span>
       </a-menu-item>
-      <sub-menu v-else :key="item.path" :menu-info="item" />
+      <sub-menu v-else :key="item.fullPath" :menu-info="item" />
     </template>
   </a-sub-menu>
 </template>
