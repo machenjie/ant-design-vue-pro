@@ -23,11 +23,13 @@ const routes = [
       },
       {
         path: "/user/login",
+        name: "login",
         component: () =>
           import(/* webpackChunkName: "user" */ "./views/user/Login.vue")
       },
       {
         path: "/user/register",
+        name: "register",
         meta: {
           authority: ["user", "admin"]
         },
@@ -61,6 +63,7 @@ const routes = [
           },
           {
             path: "/dashboard/analysis",
+            name: "analysis",
             meta: {
               menuNode: true,
               title: "Analysis"
@@ -85,6 +88,7 @@ const routes = [
           },
           {
             path: "/form/basic-form",
+            name: "basic-form",
             meta: {
               menuNode: true,
               title: "Basic Form",
@@ -109,16 +113,19 @@ const routes = [
               },
               {
                 path: "/form/setup-from/info",
+                name: "setup-form-info",
                 component: () =>
                   import(/* webpackChunkName: "form" */ "./views/form/setup/Info.vue")
               },
               {
                 path: "/form/setup-from/confirm",
+                name: "setup-form-confirm",
                 component: () =>
                   import(/* webpackChunkName: "form" */ "./views/form/setup/Confirm.vue")
               },
               {
                 path: "/form/setup-from/result",
+                name: "setup-form-result",
                 component: () =>
                   import(/* webpackChunkName: "form" */ "./views/form/setup/Result.vue")
               }
@@ -130,6 +137,7 @@ const routes = [
   },
   {
     path: "/403",
+    name: "forbidden",
     meta: {
       effectedInMenu: false
     },

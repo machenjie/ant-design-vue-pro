@@ -9,13 +9,13 @@
       <template v-for="item in menuList">
         <a-menu-item
           v-if="!item.children"
-          :key="item.fullPath"
-          @click="$router.push({ path: item.fullPath, query: $route.query })"
+          :key="item.path"
+          @click="$router.push({ path: item.path, query: $route.query })"
         >
           <a-icon v-if="item.meta.icon" :type="item.meta.icon" />
           <span>{{ item.meta.title }}</span>
         </a-menu-item>
-        <sub-menu v-else :menu-info="item" :key="item.fullPath" />
+        <sub-menu v-else :menu-info="item" :key="item.path" />
       </template>
     </a-menu>
   </div>
@@ -82,10 +82,8 @@ export default class SiderMenu extends Vue {
       }
 
       if (!item.meta || !item.meta.effectedInMenu) {
-        Vue.set(this.openKeysMap, item.fullPath, parentKeys);
-        Vue.set(this.selectedKeysMap, item.fullPath, [
-          selectedKey || item.fullPath
-        ]);
+        Vue.set(this.openKeysMap, item.path, parentKeys);
+        Vue.set(this.selectedKeysMap, item.path, [selectedKey || item.path]);
         if (item.meta && item.meta.menuNode) {
           //this is a menu node, key will be store
           let newItem = { ...item };
@@ -95,8 +93,8 @@ export default class SiderMenu extends Vue {
               item.children,
               item.meta.hideChildrenInMenu
                 ? parentKeys
-                : [...parentKeys, item.fullPath],
-              item.meta.hideChildrenInMenu ? item.fullPath : selectedKey
+                : [...parentKeys, item.path],
+              item.meta.hideChildrenInMenu ? item.path : selectedKey
             );
             newItem.children = child && child.length != 0 ? child : null;
           }
