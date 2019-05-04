@@ -2,7 +2,7 @@ export default class Auth {
   static authority: string[] = [];
 
   static getCurrentAuthority() {
-    this.authority = ["admin"];
+    this.authority = ["user"];
     return this.authority;
   }
 

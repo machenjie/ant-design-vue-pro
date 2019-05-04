@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { Layout, Icon, Drawer, Radio, Menu } from "ant-design-vue";
+import Authority from "@/components/Authority.vue";
 
 Vue.config.productionTip = false;
 
@@ -11,6 +12,7 @@ Vue.use(Icon);
 Vue.use(Drawer);
 Vue.use(Radio);
 Vue.use(Menu);
+Vue.component("Authority", Authority);
 
 new Vue({
   router,

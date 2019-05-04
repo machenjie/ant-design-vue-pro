@@ -35,7 +35,9 @@
         <Footer></Footer>
       </a-layout-footer>
     </a-layout>
-    <SettingDrawer></SettingDrawer>
+    <Authority authorized="['admin']">
+      <SettingDrawer></SettingDrawer>
+    </Authority>
   </a-layout>
 </template>
 
