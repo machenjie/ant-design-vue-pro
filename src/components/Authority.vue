@@ -16,7 +16,7 @@ import Auth from "@/utils/Auth";
         : null
     );
   }
-})
+} as any)
 export default class Authority extends Vue {
   @Prop() authorized!: string[];
 }
