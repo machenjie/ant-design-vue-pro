@@ -32,7 +32,7 @@ export default class Analysis extends Vue {
   getChartOption() {
     request({
       method: "GET",
-      url: "/api/dashboard/chart1",
+      url: "/api/dashboard/chart",
       params: { id: 1234 }
     }).then(res => {
       this.option = {
