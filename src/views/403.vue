@@ -1,6 +1,6 @@
 <template>
-  <div>
-    403 Forbidden
+  <div style="text-align: center">
+    <Icon404 type="icon-404" style="font-size: 100px"></Icon404>
   </div>
 </template>
 

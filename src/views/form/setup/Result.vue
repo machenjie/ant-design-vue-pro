@@ -1,6 +1,6 @@
 <template>
   <div>
-    Result
+    Thanks for you information!
   </div>
 </template>
 
